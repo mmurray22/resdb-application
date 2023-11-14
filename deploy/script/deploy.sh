@@ -61,7 +61,7 @@ function run_cmd(){
   count=1
   for ip in ${deploy_iplist[@]};
   do
-     ssh -n -o BatchMode=yes -o StrictHostKeyChecking=no murray22@${ip} "$1" &
+     ssh -n -o BatchMode=yes -o StrictHostKeyChecking=no scrooge@${ip} "$1" &
     ((count++))
   done
 
@@ -125,7 +125,7 @@ do
   resp=""
   while [ "$resp" = "" ]
   do
-    resp=`ssh -n -o BatchMode=yes -o StrictHostKeyChecking=no murray22@${ip} "grep \"receive public size:${#iplist[@]}\" ${server_bin}${idx}.log"` 
+    resp=`ssh -n -o BatchMode=yes -o StrictHostKeyChecking=no scrooge@${ip} "grep \"receive public size:${#iplist[@]}\" ${server_bin}${idx}.log"` 
     if [ "$resp" = "" ]; then
       sleep 1
     fi

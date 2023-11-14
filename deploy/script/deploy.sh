@@ -72,7 +72,7 @@ function run_cmd(){
 }
 
 function run_one_cmd(){
-  ssh -n -o BatchMode=yes -o StrictHostKeyChecking=no murray22@${ip} "$1" 
+  ssh -n -o BatchMode=yes -o StrictHostKeyChecking=no scrooge@${ip} "$1" 
 }
 
 run_cmd "killall -9 ${server_bin}"
@@ -87,7 +87,7 @@ count=0
 for ip in ${deploy_iplist[@]};
 do
   #scp -i ${key} -r ${bin_path} ${output_path}/server.config ${output_path}/cert ubuntu@${ip}:/home/ubuntu/ &
-  scp -r ${bin_path} ${output_path}/server.config ${output_path}/cert murray22@${ip}: &
+  scp -r ${bin_path} ${output_path}/server.config ${output_path}/cert scrooge@${ip}: &
   ((count++))
 done
 

@@ -405,7 +405,7 @@ void TransactionExecutor::ScroogeSendMessage() {
     
     auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds = end-start;
-    if(elapsed_seconds.count() > 125) {
+    if(elapsed_seconds.count() > 600) {
 	scr_write_.close();
     }
 

@@ -369,7 +369,6 @@ void TransactionExecutor::ScroogeSendMessage() {
     
     /*
      * Test Purposes
-     
     scrooge::ScroogeTransfer scroogeRequest;
     scrooge::CommitAcknowledgment messageData;
     messageData.set_sequence_number(response->seq());
@@ -379,7 +378,7 @@ void TransactionExecutor::ScroogeSendMessage() {
     const std::string scroogeRequestBytes = scroogeRequest.SerializeAsString();
     uint64_t messageSize = scroogeRequestBytes.size();
     uint8_t* const messageBytes = (uint8_t*) scroogeRequestBytes.c_str();
-    */
+   */ 
     
     //LOG(INFO) << "BEFORE WRITE " << messageSize << sizeof(messageSize) ;
     

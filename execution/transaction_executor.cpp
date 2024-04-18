@@ -308,10 +308,9 @@ void TransactionExecutor::Execute(std::unique_ptr<Request> request,
 
     
     //BatchClientResponse *scr_msg = scrooge_response.release();
-    while(!scrooge_snd_queue_.push(scrooge_response)) {
+   while(!scrooge_snd_queue_.push(scrooge_response)) {
         std::this_thread::yield();
-    }
-        
+    }        
 
     post_exec_func_(std::move(request), std::move(response));
   }
@@ -335,7 +334,7 @@ void TransactionExecutor::ScroogeSendMessage() {
   while (!IsStop()) {
     auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds = end-start;
-    if(elapsed_seconds.count() > 120) {
+    if(elapsed_seconds.count() > 200) {
 	    scr_write_.close();
     }
 

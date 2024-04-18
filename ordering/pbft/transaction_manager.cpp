@@ -50,7 +50,7 @@ TransactionManager::TransactionManager(
 	    //@Suyash
 	    // Originally, the resp_msg was supposed to be pushed to queue_
 	    // but now we first store it in store_queue.
-            //queue_.Push(std::move(resp_msg));
+           // queue_.push(std::move(resp_msg)); TODO RECOMMENT
     	    //store_queue_.Push(std::move(resp_msg));
 	    while(!store_queue_.push(std::move(resp_msg)));
 

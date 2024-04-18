@@ -83,7 +83,7 @@ int PerformanceManager::StartEval() {
     return 0;
   }
   eval_started_ = true;
-  for (int i = 0; i < 6000000000; ++i) {
+  for (int i = 0; i < 10000000000; ++i) {
     std::unique_ptr<QueueItem> queue_item = std::make_unique<QueueItem>();
     queue_item->context = nullptr;
     queue_item->client_request = GenerateClientRequest();

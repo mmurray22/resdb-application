@@ -333,6 +333,13 @@ void TransactionExecutor::ScroogeSendMessage() {
   auto start = std::chrono::steady_clock::now();
 
   while (!IsStop()) {
+    auto end = std::chrono::steady_clock::now();
+    std::chrono::duration<double> elapsed_seconds = end-start;
+    if(elapsed_seconds.count() > 120) {
+	    scr_write_.close();
+    }
+
+
     std::shared_ptr<BatchClientResponse> response;
     //BatchClientResponse *response;
     //uint64_t response;
@@ -402,12 +409,12 @@ void TransactionExecutor::ScroogeSendMessage() {
     //auto passed = timeNow.time_since_epoch();
     //LOG(INFO) << "Wrote: " << response->seq()-1 << "At: " << passed.count();
     
-    auto end = std::chrono::steady_clock::now();
+/*    auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds = end-start;
     if(elapsed_seconds.count() > 600) {
 	scr_write_.close();
     }
-
+*/
   }
 }
 

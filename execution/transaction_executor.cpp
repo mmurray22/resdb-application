@@ -334,7 +334,7 @@ void TransactionExecutor::ScroogeSendMessage() {
   while (!IsStop()) {
     auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds = end-start;
-    if(elapsed_seconds.count() > 600) {
+    if(elapsed_seconds.count() > 300) { // TODO: If something bad happens, check this
 	    scr_write_.close();
     }
 
@@ -404,9 +404,9 @@ void TransactionExecutor::ScroogeSendMessage() {
     
     scr_write_.flush();
 
-    //auto timeNow = std::chrono::system_clock::now();
+   // auto timeNow = std::chrono::system_clock::now();
     //auto passed = timeNow.time_since_epoch();
-    //LOG(INFO) << "Wrote: " << response->seq()-1 << "At: " << passed.count();
+    //LOG(INFO) << "Wrote: " << response->seq()-1; // << "At: " << passed.count();
     
     /*auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds = end-start;
@@ -444,7 +444,7 @@ void TransactionExecutor::ScroogeRecvMessage() {
     std::vector<uint8_t> message(readSize);
     scr_read_.read(reinterpret_cast<char *>(message.data()), message.size());
     if (scr_read_.fail()) {
-      LOG(INFO) << "READ Message fail: "; //<< readSize << " Bytes: " << message.size();
+      //LOG(INFO) << "READ Message fail: "; //<< readSize << " Bytes: " << message.size();
       //scr_read_.seekg(fpos, scr_read_.beg);	
       continue;
     }
@@ -473,7 +473,7 @@ void TransactionExecutor::ScroogeRecvMessage() {
 	while(last_seq < seq_no) {
 	  //auto timeNow = std::chrono::system_clock::now();
   	  //auto passed = timeNow.time_since_epoch();
-	  //LOG(INFO) << "Acked: " << last_seq << "At: " << passed.count();
+	  //LOG(INFO) << "Acked: " << last_seq; // << "At: " << passed.count();
 
 	  post_valid_func_(last_seq);
 	  last_seq++;
